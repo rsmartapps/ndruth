@@ -1,5 +1,7 @@
 <?php
 
+include_once 'class-widget-media-image.php';
+
 
 
 
@@ -110,8 +112,8 @@ function register_widgets(){
         'name'          => 'Services',
         'id'            => 'homepage-service-widget',
         'description'   => 'Services shown in homepage, drag image widget in here',
-        'before_widget' => '<div id="%1$s" class="row ml-1 mr-1">',
-        'after_widget'  => '</div>',
+        'before_widget' => '<div id="%1$s" class="col-12 col-md-6 col-lg-4 col-xl-3 mt-3 mb-3"><div class="card h-100 shadow">',
+        'after_widget'  => '</div></div>',
         'before_title' => '<h5 class="card-header">',
         'after_title' => '</h5>'
     ));
@@ -120,5 +122,4 @@ add_action('after_setup_theme','register_widgets');
 
 
 /***** FOOTERS ********/
-
-
+        
