@@ -32,7 +32,5 @@ function homepage_consulta_online(){
 
 }
 function homepage_servicios(){
-    if ( is_active_sidebar( 'homepage-service-widget' ) ) {
-        dynamic_sidebar( 'homepage-service-widget' );
-    }
+    include_once 'views/html-services-homepage.php';
 }
