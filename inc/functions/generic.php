@@ -76,7 +76,7 @@ function google_fonts() {
     return $fonts_url;
 }
   
-function wpdocs_channel_nav_class( $classes, $item, $args ) {
+function wpdocs_channel_nav_class( $classes, $item, $args ,$depth ) {
  
     if ( 'header' === $args->theme_location ) {
         $classes[] = "nav-item";
@@ -84,15 +84,15 @@ function wpdocs_channel_nav_class( $classes, $item, $args ) {
  
     return $classes;
 }
-add_filter( 'nav_menu_css_class' , 'wpdocs_channel_nav_class' , 10, 4 );
+add_filter( 'nav_menu_css_class' , 'wpdocs_channel_nav_class' , 50, 4 );
 
-add_filter( 'nav_menu_link_attributes', 'wpse156165_menu_add_class', 10, 3 );
 
-function wpse156165_menu_add_class( $atts, $item, $args ) {
+function wpse156165_menu_add_class( $atts, $item, $args,$depth ) {
     $class = 'nav-link'; // or something based on $item
     $atts['class'] = $class;
     return $atts;
 }
+add_filter( 'nav_menu_link_attributes', 'wpse156165_menu_add_class', 50, 4 );
 
 
 
