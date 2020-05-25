@@ -102,7 +102,7 @@ function register_widgets(){
         'name' => 'Footer widget',
         'id' => 'footer-widget',
         'description' => 'Widgets in this area will be shown in the footer.',
-        'before_widget' => '<div id="%1$s">',
+        'before_widget' => '<div id="%1$s" class="col-lg-4 mr-auto">',
         'after_widget'  => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
