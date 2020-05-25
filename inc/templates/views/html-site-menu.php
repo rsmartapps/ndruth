@@ -9,6 +9,11 @@
         return $args;
         
       }
+      function page_header_menu_a_class($attrs){
+        $attrs['class'] .= ' nav-link';
+        return $attrs;
+      }
+      add_filter('page_menu_link_attributes','page_header_menu_a_class');
       wp_nav_menu(
 				array(
           'theme_location'  => 'header',
