@@ -4,11 +4,6 @@
     </button>
       
       <?php
-      function page_menu_header_args($args){
-        $args['before'] = '<ul class="navbar-nav ml-auto">';
-        return $args;
-        
-      }
       function page_header_menu_a_class($attrs){
         $attrs['class'] .= ' nav-link';
         return $attrs;
