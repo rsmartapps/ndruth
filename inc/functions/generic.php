@@ -125,5 +125,6 @@ add_action('after_setup_theme','register_widgets');
 
 function reg_widgets(){
     register_widget( 'Widget_Media_Image' );
+    register_widget( 'Foo_Widget' );
 }
-add_action('init','reg_widgets',1);
+add_action('widgets_init','reg_widgets');

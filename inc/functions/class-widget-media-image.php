@@ -6,16 +6,7 @@
  * @subpackage Widgets
  * @since 4.8.0
  */
-
-/**
- * Core class that implements an image widget.
- *
- * @since 4.8.0
- *
- * @see WP_Widget_Media
- * @see WP_Widget
- */
-class Widget_Media_Image extends WP_Widget_Media {
+class Widget_Media_Image extends WP_Widget {
 
 	/**
 	 * Constructor.
@@ -31,341 +22,120 @@ class Widget_Media_Image extends WP_Widget_Media {
 				'mime_type'   => 'image',
 			)
 		);
-
-		$this->l10n = array_merge(
-			$this->l10n,
-			array(
-				'no_media_selected'          => __( 'No image selected' ),
-				'add_media'                  => _x( 'Add Image', 'label for button in the image widget' ),
-				'replace_media'              => _x( 'Replace Image', 'label for button in the image widget; should preferably not be longer than ~13 characters long' ),
-				'edit_media'                 => _x( 'Edit Image', 'label for button in the image widget; should preferably not be longer than ~13 characters long' ),
-				'missing_attachment'         => sprintf(
-					/* translators: %s: URL to media library. */
-					__( 'We can&#8217;t find that image. Check your <a href="%s">media library</a> and make sure it wasn&#8217;t deleted.' ),
-					esc_url( admin_url( 'upload.php' ) )
-				),
-				/* translators: %d: Widget count. */
-				'media_library_state_multi'  => _n_noop( 'Image Widget (%d)', 'Image Widget (%d)' ),
-				'media_library_state_single' => __( 'Image Widget' ),
-			)
-		);
 	}
 
-	/**
-	 * Get schema for properties of a widget instance (item).
-	 *
-	 * @since 4.8.0
-	 *
-	 * @see WP_REST_Controller::get_item_schema()
-	 * @see WP_REST_Controller::get_additional_fields()
-	 * @link https://core.trac.wordpress.org/ticket/35574
-	 *
-	 * @return array Schema for properties.
-	 */
-	public function get_instance_schema() {
-		return array_merge(
-			array(
-				'size'              => array(
-					'type'        => 'string',
-					'enum'        => array_merge( get_intermediate_image_sizes(), array( 'full', 'custom' ) ),
-					'default'     => 'medium',
-					'description' => __( 'Size' ),
-				),
-				'width'             => array( // Via 'customWidth', only when size=custom; otherwise via 'width'.
-					'type'        => 'integer',
-					'minimum'     => 0,
-					'default'     => 0,
-					'description' => __( 'Width' ),
-				),
-				'height'            => array( // Via 'customHeight', only when size=custom; otherwise via 'height'.
-					'type'        => 'integer',
-					'minimum'     => 0,
-					'default'     => 0,
-					'description' => __( 'Height' ),
-				),
-
-				'caption'           => array(
-					'type'                  => 'string',
-					'default'               => '',
-					'sanitize_callback'     => 'wp_kses_post',
-					'description'           => __( 'Caption' ),
-					'should_preview_update' => false,
-				),
-				'alt'               => array(
-					'type'              => 'string',
-					'default'           => '',
-					'sanitize_callback' => 'sanitize_text_field',
-					'description'       => __( 'Alternative Text' ),
-				),
-				'link_type'         => array(
-					'type'                  => 'string',
-					'enum'                  => array( 'none', 'file', 'post', 'custom' ),
-					'default'               => 'custom',
-					'media_prop'            => 'link',
-					'description'           => __( 'Link To' ),
-					'should_preview_update' => true,
-				),
-				'link_url'          => array(
-					'type'                  => 'string',
-					'default'               => '',
-					'format'                => 'uri',
-					'media_prop'            => 'linkUrl',
-					'description'           => __( 'URL' ),
-					'should_preview_update' => true,
-				),
-				'image_classes'     => array(
-					'type'                  => 'string',
-					'default'               => '',
-					'sanitize_callback'     => array( $this, 'sanitize_token_list' ),
-					'media_prop'            => 'extraClasses',
-					'description'           => __( 'Image CSS Class' ),
-					'should_preview_update' => false,
-				),
-				'link_classes'      => array(
-					'type'                  => 'string',
-					'default'               => '',
-					'sanitize_callback'     => array( $this, 'sanitize_token_list' ),
-					'media_prop'            => 'linkClassName',
-					'should_preview_update' => false,
-					'description'           => __( 'Link CSS Class' ),
-				),
-				'link_rel'          => array(
-					'type'                  => 'string',
-					'default'               => '',
-					'sanitize_callback'     => array( $this, 'sanitize_token_list' ),
-					'media_prop'            => 'linkRel',
-					'description'           => __( 'Link Rel' ),
-					'should_preview_update' => false,
-				),
-				'link_target_blank' => array(
-					'type'                  => 'boolean',
-					'default'               => false,
-					'media_prop'            => 'linkTargetBlank',
-					'description'           => __( 'Open link in a new tab' ),
-					'should_preview_update' => false,
-				),
-				'image_title'       => array(
-					'type'                  => 'string',
-					'default'               => '',
-					'sanitize_callback'     => 'sanitize_text_field',
-					'media_prop'            => 'title',
-					'description'           => __( 'Image Title Attribute' ),
-					'should_preview_update' => false,
-				),
-
-				/*
-				 * There are two additional properties exposed by the PostImage modal
-				 * that don't seem to be relevant, as they may only be derived read-only
-				 * values:
-				 * - originalUrl
-				 * - aspectRatio
-				 * - height (redundant when size is not custom)
-				 * - width (redundant when size is not custom)
-				 */
-			),
-			parent::get_instance_schema()
-		);
-	}
-
-	/**
-	 * Render the media on the frontend.
-	 *
-	 * @since 4.8.0
-	 *
-	 * @param array $instance Widget instance props.
-	 */
-	public function render_media( $instance ) {
-		$instance = array_merge( wp_list_pluck( $this->get_instance_schema(), 'default' ), $instance );
-		$instance = wp_parse_args(
-			$instance,
-			array(
-				'size' => 'thumbnail',
-			)
-		);
-
-		$attachment = null;
-		if ( $this->is_attachment_with_mime_type( $instance['attachment_id'], $this->widget_options['mime_type'] ) ) {
-			$attachment = get_post( $instance['attachment_id'] );
-		}
-		if ( $attachment ) {
-			$caption = '';
-			if ( ! isset( $instance['caption'] ) ) {
-				$caption = $attachment->post_excerpt;
-			} elseif ( trim( $instance['caption'] ) ) {
-				$caption = $instance['caption'];
-			}
-
-			$image_attributes = array(
-				'class' => sprintf( 'image wp-image-%d %s', $attachment->ID, $instance['image_classes'] ),
-				'style' => 'max-width: 100%; height: auto;',
-			);
-			if ( ! empty( $instance['image_title'] ) ) {
-				$image_attributes['title'] = $instance['image_title'];
-			}
-
-			if ( $instance['alt'] ) {
-				$image_attributes['alt'] = $instance['alt'];
-			}
-
-			$size = $instance['size'];
-			if ( 'custom' === $size || ! in_array( $size, array_merge( get_intermediate_image_sizes(), array( 'full' ) ), true ) ) {
-				$size = array( $instance['width'], $instance['height'] );
-			}
-			$image_attributes['class'] .= sprintf( ' attachment-%1$s size-%1$s', is_array( $size ) ? join( 'x', $size ) : $size );
-
-			$image = wp_get_attachment_image( $attachment->ID, $size, false, $image_attributes );
-
-			$caption_size = _wp_get_image_size_from_meta( $instance['size'], wp_get_attachment_metadata( $attachment->ID ) );
-			$width        = empty( $caption_size[0] ) ? 0 : $caption_size[0];
-
-		} else {
-			if ( empty( $instance['url'] ) ) {
-				return;
-			}
-
-			$instance['size'] = 'custom';
-			$caption          = $instance['caption'];
-			$width            = $instance['width'];
-			$classes          = 'image ' . $instance['image_classes'];
-			if ( 0 === $instance['width'] ) {
-				$instance['width'] = '';
-			}
-			if ( 0 === $instance['height'] ) {
-				$instance['height'] = '';
-			}
-
-			$image = sprintf(
-				'<div class="d-flex align-items-center" style="height:250px"><img class="card-img-top mh-100 %1$s" src="%2$s" alt="%3$s" width="%4$s" height="%5$s" preserveaspectratio="xMidYMid slice" /></div>',
-				esc_attr( $classes ),
-				esc_url( $instance['url'] ),
-				esc_attr( $instance['alt'] ),
-				esc_attr( $instance['width'] ),
-				esc_attr( $instance['height'] )
-			);
-		} // End if().
-
-		$url = '';
-		if ( 'file' === $instance['link_type'] ) {
-			$url = $attachment ? wp_get_attachment_url( $attachment->ID ) : $instance['url'];
-		} elseif ( $attachment && 'post' === $instance['link_type'] ) {
-			$url = get_attachment_link( $attachment->ID );
-		} elseif ( 'custom' === $instance['link_type'] && ! empty( $instance['link_url'] ) ) {
-			$url = $instance['link_url'];
-		}
-
-		if ( $url ) {
-			$link = sprintf( '<a href="%s"', esc_url( $url ) );
-			if ( ! empty( $instance['link_classes'] ) ) {
-				$link .= sprintf( ' class="%s"', esc_attr( $instance['link_classes'] ) );
-			}
-			if ( ! empty( $instance['link_rel'] ) ) {
-				$link .= sprintf( ' rel="%s"', esc_attr( $instance['link_rel'] ) );
-			}
-			if ( ! empty( $instance['link_target_blank'] ) ) {
-				$link .= ' target="_blank"';
-			}
-			$link .= '>';
-			$link .= $image;
-			$link .= '</a>';
-			$image = wp_targeted_link_rel( $link );
-		}
-
-		if ( $caption ) {
-			$image = img_caption_shortcode(
-				array(
-					'width'   => $width,
-					'caption' => $caption,
-				),
-				$image
-			);
-		}
-
-		echo $image;
-	}
-
-	/**
-	 * Loads the required media files for the media manager and scripts for media widgets.
-	 *
-	 * @since 4.8.0
-	 */
-	public function enqueue_admin_scripts() {
-		parent::enqueue_admin_scripts();
-
-		$handle = 'media-image-widget';
-		wp_enqueue_script( $handle );
-
-		$exported_schema = array();
-		foreach ( $this->get_instance_schema() as $field => $field_schema ) {
-			$exported_schema[ $field ] = wp_array_slice_assoc( $field_schema, array( 'type', 'default', 'enum', 'minimum', 'format', 'media_prop', 'should_preview_update' ) );
-		}
-		wp_add_inline_script(
-			$handle,
-			sprintf(
-				'wp.mediaWidgets.modelConstructors[ %s ].prototype.schema = %s;',
-				wp_json_encode( $this->id_base ),
-				wp_json_encode( $exported_schema )
-			)
-		);
-
-		wp_add_inline_script(
-			$handle,
-			sprintf(
-				'
-					wp.mediaWidgets.controlConstructors[ %1$s ].prototype.mime_type = %2$s;
-					wp.mediaWidgets.controlConstructors[ %1$s ].prototype.l10n = _.extend( {}, wp.mediaWidgets.controlConstructors[ %1$s ].prototype.l10n, %3$s );
-				',
-				wp_json_encode( $this->id_base ),
-				wp_json_encode( $this->widget_options['mime_type'] ),
-				wp_json_encode( $this->l10n )
-			)
-		);
-	}
-
-	/**
-	 * Render form template scripts.
-	 *
-	 * @since 4.8.0
-	 */
-	public function render_control_template_scripts() {
-		parent::render_control_template_scripts();
-
-		?>
-		<script type="text/html" id="tmpl-wp-media-widget-image-fields">
-			<# var elementIdPrefix = 'el' + String( Math.random() ) + '_'; #>
-			<# if ( data.url ) { #>
-			<p class="media-widget-image-link">
-				<label for="{{ elementIdPrefix }}linkUrl"><?php esc_html_e( 'Link to:' ); ?></label>
-				<input id="{{ elementIdPrefix }}linkUrl" type="text" class="widefat link" value="{{ data.link_url }}" placeholder="https://" pattern="((\w+:)?\/\/\w.*|\w+:(?!\/\/$)|\/|\?|#).*">
-			</p>
-			<# } #>
-		</script>
-		<script type="text/html" id="tmpl-wp-media-widget-image-preview">
-			<# if ( data.error && 'missing_attachment' === data.error ) { #>
-				<div class="notice notice-error notice-alt notice-missing-attachment">
-					<p><?php echo $this->l10n['missing_attachment']; ?></p>
-				</div>
-			<# } else if ( data.error ) { #>
-				<div class="notice notice-error notice-alt">
-					<p><?php _e( 'Unable to preview media due to an unknown error.' ); ?></p>
-				</div>
-			<# } else if ( data.url ) { #>
-				<img class="attachment-thumb" src="{{ data.url }}" draggable="false" alt="{{ data.alt }}"
-					<# if ( ! data.alt && data.currentFilename ) { #>
-						aria-label="
-						<?php
-						echo esc_attr(
-							sprintf(
-								/* translators: %s: The image file name. */
-								__( 'The current image has no alternative text. The file name is: %s' ),
-								'{{ data.currentFilename }}'
-							)
-						);
-						?>
-						"
-					<# } #>
-				/>
-			<# } #>
-		</script>
+	public function form($instance) {
+		//WIDGET BACK-END SETTINGS
+		$instance = wp_parse_args((array) $instance, array('link1' => ''));
+		$link1 = $instance['link1'];
+		$images = new WP_Query( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'post_mime_type' => 'image' , 'posts_per_page' => -1 ) );
+		if( $images->have_posts() ){ 
+			$options = array();
+			for( $i = 0; $i < 2; $i++ ) {
+				$options[$i] = '';
+				while( $images->have_posts() ) {
+					$images->the_post();
+					$img_src = wp_get_attachment_image_src(get_the_ID());
+					$the_link = ( $i == 0 ) ? $link1 : $link2;
+					$options[$i] .= '<option value="' . $img_src[0] . '" ' . selected( $the_link, $img_src[0], false ) . '>' . get_the_title() . '</option>';
+				} 
+		   } ?>
+		   <p>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php echo esc_html__( 'Title:', 'ndb' ); ?></label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+        </p>
+		<p>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'link1' ) ); ?>"><?php echo esc_html__( 'Image:', 'ndb' ); ?></label>
+		<select name="<?php echo $this->get_field_name( 'link1' ); ?>"><?php echo $options[0]; ?></select>
+        </p>
+		</br>
 		<?php
+		} else {
+			  echo 'There are no images in the media library. Click <a href="' . admin_url('/media-new.php') . '" title="Add Images">here</a> to add some images';
+		}
+  
+	}
+	public function update( $new_instance, $old_instance ) {
+ 
+        $instance = array();
+ 
+        $instance['title'] = ( !empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		$instance['link1'] = ( !empty( $new_instance['link1'] ) ) ? $new_instance['link1'] : '';
+        return $instance;
+	}
+	public function widget($args, $instance){
+		$title = ( empty($instance['title']) ) ? 0 : $instance['title'];
+		$link1 = ( empty($instance['link1']) ) ? 0 : $instance['link1']; ?>
+
+		<!-- Display images --><?php 
+		if( !( $title || $link1 ) ) {
+			echo "Please configure this widget.";
+		} else {
+			echo $args['before'];
+			echo "<h5 class='card-header'>$title</h5>"; 
+			?>
+			<div class="d-flex align-items-center" style="height:250px">
+                <img src="<?php echo $link1; ?>" class="card-img-top mh-100" alt="..." role="img" preserveaspectratio="xMidYMid slice">
+            </div>
+			<?php
+			echo $args['after']; 
+		} 
 	}
 }
+
+class Foo_Widget extends WP_Widget {
+ 
+	function __construct() {
+		parent::__construct(
+		  
+			// Base ID of your widget
+			'wpb_widget', 
+			
+			// Widget name will appear in UI
+			__('WPBeginner Widget', 'wpb_widget_domain'), 
+			
+			// Widget description
+			array( 'description' => __( 'Sample widget based on WPBeginner Tutorial', 'wpb_widget_domain' ), ) 
+			);
+		}
+		  
+		// Creating widget front-end
+		  
+		public function widget( $args, $instance ) {
+		$title = apply_filters( 'widget_title', $instance['title'] );
+		  
+		// before and after widget arguments are defined by themes
+		echo $args['before_widget'];
+		if ( ! empty( $title ) )
+		echo $args['before_title'] . $title . $args['after_title'];
+		  
+		// This is where you run the code and display the output
+		echo __( 'Hello, World!', 'wpb_widget_domain' );
+		echo $args['after_widget'];
+		}
+				  
+		// Widget Backend 
+		public function form( $instance ) {
+		if ( isset( $instance[ 'title' ] ) ) {
+		$title = $instance[ 'title' ];
+		}
+		else {
+		$title = __( 'New title', 'wpb_widget_domain' );
+		}
+		// Widget admin form
+		?>
+		<p>
+		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+		</p>
+		<?php 
+		}
+			  
+		// Updating widget replacing old instances with new
+		public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		return $instance;
+		}
+ 
+} // class Foo_Widget
