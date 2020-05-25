@@ -1,0 +1,127 @@
+@import "fonts.scss";
+
+/*! Override default's */
+$theme-colors:("primary":rgb(56,182,255),"secondary":rgb(255,129,56) );
+$navbar-light-color: rgba(map-get($theme-colors, "primary"), .75);
+/*! Load bootstrap default's */
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+$container-max-widths: (
+    sm: 1137px,
+    md: 1138px,
+    lg: 1139px,
+    xl: 1140px
+);
+$navbar-light-hover-color: rgba(map-get($theme-colors, "secondary"), .75);
+// $link-color:$white;
+$link-hover-color: darken($navbar-light-hover-color,15%);
+$navbar-dark-color: white;
+$navbar-dark-hover-color: $link-hover-color;
+$link-hover-decoration: none;
+
+$enable-responsive-font-sizes: true;
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-base: "Roboto",$font-family-sans-serif;
+
+@import "bootstrap/mixins";
+@import "bootstrap/root";
+@import "bootstrap/reboot";
+@import "bootstrap/type";
+@import "bootstrap/images";
+@import "bootstrap/code";
+@import "bootstrap/grid";
+@import "bootstrap/tables";
+@import "bootstrap/forms";
+@import "bootstrap/buttons";
+@import "bootstrap/transitions";
+@import "bootstrap/dropdown";
+@import "bootstrap/button-group";
+@import "bootstrap/input-group";
+@import "bootstrap/custom-forms";
+@import "bootstrap/nav";
+@import "bootstrap/navbar";
+@import "bootstrap/card";
+@import "bootstrap/breadcrumb";
+@import "bootstrap/pagination";
+@import "bootstrap/badge";
+@import "bootstrap/jumbotron";
+@import "bootstrap/alert";
+@import "bootstrap/progress";
+@import "bootstrap/media";
+@import "bootstrap/list-group";
+@import "bootstrap/close";
+@import "bootstrap/toasts";
+@import "bootstrap/modal";
+@import "bootstrap/tooltip";
+@import "bootstrap/popover";
+@import "bootstrap/carousel";
+@import "bootstrap/spinners";
+@import "bootstrap/utilities";
+@import "bootstrap/print";
+
+
+/*! Customizations */
+
+.imagen-menu{
+    max-width: 75%;
+
+}
+.imagen-menu img{
+    max-height: 50px;
+    max-width: 100%;
+}
+.hero-banner{
+    height: 250px;
+}
+.image-bg{
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.navbar-brand .brand{
+    font-size: 1.4rem;
+}
+.navbar-brand .brand span{
+    margin-top: -9px;
+    font-size:1.1rem;
+}
+
+@media screen and (max-width: 320px){
+    .display-4 {
+        font-size: 1.5rem;
+    }
+    .btn-lg, .btn-group-lg > .btn {
+        padding: .4rem .7rem;
+        font-size: 1rem;
+    }
+}
+@media screen and (min-width: 321px){
+    .display-4 {
+        font-size: 1.8rem;
+    }
+}
+@media screen and (min-width: 768px){
+    .hero-banner {
+        height: 400px;
+        margin-bottom: 0;
+        background-position: 50%;
+    }
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+@media screen and (min-width: 1000px){
+    .hero-banner {
+        height: 450px;
+    }
+    .display-4 {
+        font-size: 3.5rem;
+    }
+}
+
+.title,h1,h2,h3,h4,h5{
+    font-family: 'OpenSans',$font-family-sans-serif;
+}
+a.text-white:hover{
+    color: $navbar-light-hover-color !important;
+}

@@ -1,0 +1,173 @@
+/* Roboto thin */
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/public/css/fonts/Roboto/Roboto-Thin.ttf") format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/public/css/fonts/Roboto/Roboto-ThinItalic.ttf") format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+/* Roboto light */
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/public/css/fonts/Roboto/Roboto-Light.ttf") format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/public/css/fonts/Roboto/Roboto-LightItalic.ttf") format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Roboto regular */
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/public/css/fonts/Roboto/Roboto-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/public/css/fonts/Roboto/Roboto-Italic.ttf") format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Roboto medium */
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/public/css/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/public/css/fonts/Roboto/Roboto-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Roboto Bold */
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/public/css/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/public/css/fonts/Roboto/Roboto-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Roboto Black */
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/public/css/fonts/Roboto/Roboto-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('/public/css/fonts/Roboto/Roboto-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* OpenSans thin */
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("/public/css/fonts/OpenSans/OpenSans-Thin.ttf") format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: "OpenSans";
+    src: url("/public/css/fonts/OpenSans/OpenSans-ThinItalic.ttf") format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+/* OpenSans light */
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("/public/css/fonts/OpenSans/OpenSans-Light.ttf") format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("/public/css/fonts/OpenSans/OpenSans-LightItalic.ttf") format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* OpenSans regular */
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("/public/css/fonts/OpenSans/OpenSans-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("/public/css/fonts/OpenSans/OpenSans-Italic.ttf") format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* OpenSans Bold */
+
+@font-face {
+    font-family: "OpenSans";
+    src: url('/public/css/fonts/OpenSans/OpenSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url('/public/css/fonts/OpenSans/OpenSans-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* OpenSans Black */
+
+@font-face {
+    font-family: "OpenSans";
+    src: url('/public/css/fonts/OpenSans/OpenSans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url('/public/css/fonts/OpenSans/OpenSans-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
