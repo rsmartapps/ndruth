@@ -15,3 +15,24 @@ function site_menu(){
 function end_head_wrapper(){ ?>
  </nav><?php
 }
+function homepage_posts(){
+    global $post;
+    while ( have_posts() ) {
+        the_post();
+        
+        include_once 'views/html-content-homepage.php';
+
+    } // end of the loop.
+}
+function homepage_contact(){
+    include_once 'views/html-contact-homepage.php';
+}
+function homepage_consulta_online(){
+    include_once 'views/html-consulta-homepage.php';
+
+}
+function homepage_servicios(){
+    if ( is_active_sidebar( 'homepage-service-widget' ) ) {
+        dynamic_sidebar( 'homepage-service-widget' );
+    }
+}

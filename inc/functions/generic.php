@@ -103,9 +103,17 @@ function register_widgets(){
         'id' => 'footer-widget',
         'description' => 'Widgets in this area will be shown in the footer.',
         'before_widget' => '<div id="%1$s" class="col-lg-4 mr-auto">',
-        'after_widget'  => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
+    ));
+    register_sidebar(array(
+        'name'          => 'Services',
+        'id'            => 'homepage-service-widget',
+        'description'   => 'Services shown in homepage, drag image widget in here',
+        'before_widget' => '<div id="%1$s" class="row ml-1 mr-1">',
+        'after_widget'  => '</div>',
+        'before_title' => '<h5 class="card-header">',
+        'after_title' => '</h5>'
     ));
 }
 add_action('after_setup_theme','register_widgets');

@@ -13,5 +13,6 @@
 
 get_header(); 
 
+do_action( 'homepage' );
 
 get_footer();
