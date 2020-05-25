@@ -1,7 +1,5 @@
 <?php
 
-include_once 'class-widget-media-image.php';
-
 
 
 
@@ -122,9 +120,3 @@ add_action('after_setup_theme','register_widgets');
 
 
 /***** FOOTERS ********/
-
-function reg_widgets(){
-    register_widget( 'Widget_Media_Image' );
-    register_widget( 'Foo_Widget' );
-}
-add_action('widgets_init','reg_widgets');

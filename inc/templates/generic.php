@@ -33,4 +33,5 @@ function homepage_consulta_online(){
 }
 function homepage_servicios(){
     include_once 'views/html-services-homepage.php';
+    wp_enqueue_script( 'bnd-widget-image', get_template_directory_uri() . '/js/widget-images.js', array('jquery'), $bnd_version, true );
 }
