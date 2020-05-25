@@ -122,4 +122,8 @@ add_action('after_setup_theme','register_widgets');
 
 
 /***** FOOTERS ********/
-        
+
+function reg_widgets(){
+    register_widget( 'WP_Widget_Media_Image' );
+}
+add_action('init','reg_widgets',1);
