@@ -7,4 +7,4 @@
     ?>
   </div>
 </section>
-    wp_enqueue_script( 'bnd-w', get_template_directory_uri() . '/js/popper.min.js', array('jquery'), $bnd_version, true );
+
