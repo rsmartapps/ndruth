@@ -9,7 +9,7 @@
  *
  * Template name: Homepage
  *
- * @package bnd
+ * @package ndruththeme
  */
 
 get_header(); ?>
@@ -18,17 +18,12 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<?php
-			/**
-			 * Functions hooked in to homepage action
-			 *
-			 * @hooked storefront_homepage_content      - 10
-			 * @hooked storefront_product_categories    - 20
-			 * @hooked storefront_recent_products       - 30
-			 * @hooked storefront_featured_products     - 40
-			 * @hooked storefront_popular_products      - 50
-			 * @hooked storefront_on_sale_products      - 60
-			 * @hooked storefront_best_selling_products - 70
-			 */
+			/*
+				add_action('homepage','homepage_posts',10);
+				add_action('homepage','homepage_contact',20);
+				add_action('homepage','homepage_consulta_online',30);
+				add_action('homepage','homepage_servicios',40);
+			*/
 			do_action( 'homepage' );
 			?>
 

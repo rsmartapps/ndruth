@@ -10,3 +10,4 @@ $featured_image = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
             <a class="btn btn-primary btn-lg" href="/servicios" role="button" style="z-index:10">Servicios</a>
         </div>
 </section>
+<?php the_content(); ?>

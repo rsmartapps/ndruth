@@ -3,10 +3,12 @@ define( 'WP_DEBUG', true );
 define( 'SCRIPT_DEBUG', true );
 define( 'WP_DEBUG_DISPLAY', true );
 define( 'CONCATENATE_SCRIPTS', false );
+define( 'COMPRESS_CSS', false );
+define( 'COMPRESS_SCRIPTS', false );
 
 $theme = wp_get_theme( 'Business ND' );
-global $bnd_version;
-$bnd_version = $theme['Version'];
+global $ndruththeme_version;
+$ndruththeme_version = $theme['Version'];
 
 //This theme uses post thumbnails
 add_theme_support( 'post-thumbnails' );

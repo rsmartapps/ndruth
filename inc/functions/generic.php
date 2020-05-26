@@ -1,6 +1,5 @@
 <?php
-
-
+require_once 'ndruththeme_widgets.php';
 
 
 /***** HEADERS ********/
@@ -15,40 +14,41 @@ function add_header_xua() {
 }
 add_action( 'send_headers', 'add_header_xua' );
 
-function bnd_theme_setup() {
+function ndruththeme_theme_setup() {
     add_theme_support( 'menus' );
     register_nav_menus( array( 
       'header' => 'Header menu', 
       'footer' => 'Footer menu' 
     ) );
 }
-  add_action('after_setup_theme','bnd_theme_setup');
+  add_action('after_setup_theme','ndruththeme_theme_setup');
 /**
  * Enqueue scripts and styles.
  *
  * @since  1.0.0
  */
 function scripts() {
-    global $bnd_version;
+    global $ndruththeme_version;
     // $min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
     /**
      * Styles
      */
-    wp_enqueue_style( 'bnd-style', get_template_directory_uri() . '/style'.$min.'.css', '', $bnd_version );
+    wp_enqueue_style( 'font-awesome-style', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css' );
+    wp_enqueue_style( 'ndruththeme-style', get_template_directory_uri() . '/style'.$min.'.css', '', $ndruththeme_version );
 
     /**
      * Fonts
      */
-    // wp_enqueue_style( 'bnd-fonts', google_fonts(), array(), null );
+    // wp_enqueue_style( 'ndruththeme-fonts', google_fonts(), array(), null );
 
     // /**
     //  * Scripts
     //  */
     // // <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    // wp_register_script( 'jquery', get_template_directory_uri() . '/js/bootstrap/jquert.3.3.1.min.js', array(), $bnd_version, true );
-    wp_enqueue_script( 'bnd-bootstrap4', get_template_directory_uri() . '/js/bootstrap/bootstrap.all.min.js', array('jquery'), $bnd_version, true );
-    wp_enqueue_script( 'bnd-popper', get_template_directory_uri() . '/js/popper.min.js', array('jquery'), $bnd_version, true );
+    // wp_register_script( 'jquery', get_template_directory_uri() . '/js/bootstrap/jquert.3.3.1.min.js', array(), $ndruththeme_version, true );
+    wp_enqueue_script( 'ndruththeme-bootstrap4', get_template_directory_uri() . '/js/bootstrap/bootstrap.all.min.js', array('jquery'), $ndruththeme_version, true );
+    wp_enqueue_script( 'ndruththeme-popper', get_template_directory_uri() . '/js/popper.min.js', array('jquery'), $ndruththeme_version, true );
 
 }
 add_action("wp_enqueue_scripts","scripts");

@@ -13,6 +13,11 @@
 
 get_header(); 
 
-do_action( 'homepage' );
+while ( have_posts() ) {
+    the_post();
+    
+    include_once 'inc/templates/views/html-page-content.php';
+
+} 
 
 get_footer();
