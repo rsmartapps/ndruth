@@ -1,6 +1,11 @@
 <?php
 $featured_image = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
 ?>
+<?php /**
+ *
+ * @package ndruththeme
+ */
+?>
 <section>
     <div 
      class="jumbotron hero-banner image-bg d-flex align-items-center flex-column justify-content-center position-relative" 

@@ -1,83 +1,32 @@
 <?php
 /**
- * The template for displaying 404 pages (not found).
+ * The template for displaying the 404 template in the Twenty Twenty theme.
  *
- * @package storefront
+ * @package ndruththeme
  */
 
-get_header(); ?>
+get_header();
+?>
 
-	<div id="primary" class="content-area">
+<main id="site-content" role="main">
 
-		<main id="main" class="site-main" role="main">
+	<div class="container pt-4">
 
-			<div class="error-404 not-found">
+		<h1 class="entry-title"><?php _e( 'Page Not Found', 'ndruththeme' ); ?></h1>
 
-				<div class="page-content">
+		<div class="intro-text"><p><?php _e( 'The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place.', 'ndruththeme' ); ?></p></div>
 
-					<header class="page-header">
-						<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'storefront' ); ?></h1>
-					</header><!-- .page-header -->
+		<?php
+		get_search_form(
+			array(
+				'label' => __( '404 not found', 'ndruththeme' ),
+			)
+		);
+		?>
 
-					<p><?php esc_html_e( 'Nothing was found at this location. Try searching, or check out the links below.', 'storefront' ); ?></p>
+	</div><!-- .section-inner -->
 
-					<?php
-					echo '<section aria-label="' . esc_html__( 'Search', 'storefront' ) . '">';
-
-					if ( storefront_is_woocommerce_activated() ) {
-						the_widget( 'WC_Widget_Product_Search' );
-					} else {
-						get_search_form();
-					}
-
-					echo '</section>';
-
-					if ( storefront_is_woocommerce_activated() ) {
-
-						echo '<div class="fourohfour-columns-2">';
-
-							echo '<section class="col-1" aria-label="' . esc_html__( 'Promoted Products', 'storefront' ) . '">';
-
-								storefront_promoted_products();
-
-							echo '</section>';
-
-							echo '<nav class="col-2" aria-label="' . esc_html__( 'Product Categories', 'storefront' ) . '">';
-
-								echo '<h2>' . esc_html__( 'Product Categories', 'storefront' ) . '</h2>';
-
-								the_widget(
-									'WC_Widget_Product_Categories', array(
-										'count' => 1,
-									)
-								);
-
-							echo '</nav>';
-
-						echo '</div>';
-
-						echo '<section aria-label="' . esc_html__( 'Popular Products', 'storefront' ) . '">';
-
-							echo '<h2>' . esc_html__( 'Popular Products', 'storefront' ) . '</h2>';
-
-							$shortcode_content = storefront_do_shortcode(
-								'best_selling_products', array(
-									'per_page' => 4,
-									'columns'  => 4,
-								)
-							);
-
-							echo $shortcode_content; // WPCS: XSS ok.
-
-						echo '</section>';
-					}
-					?>
-
-				</div><!-- .page-content -->
-			</div><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+</main><!-- #site-content -->
 
 <?php
 get_footer();

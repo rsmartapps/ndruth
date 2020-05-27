@@ -1,3 +1,8 @@
+<?php /**
+ *
+ * @package ndruththeme
+ */
+?>
   <section class="container bg-light p-3">
     <div class="card-body align-self-center">
       <p class="card-text title text-justify">Ruth Sebastian es dietista-nutricionista con cerca de 10 años de experiencia en nutrición comunitaria y hospitalaria, trabajando con personas con malnutrición, obesidad, problemas endocrinos, diabetes, oncología y problemas digestivos. Ruth Sebastian también trabaja con deportistas profesionales, mujeres embarazadas y niños en etapa de lactancia e introducción de alimentos.</p>

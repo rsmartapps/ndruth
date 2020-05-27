@@ -1,3 +1,8 @@
+<?php /**
+ *
+ * @package ndruththeme
+ */
+?>
 <section class="container bg-light mt-3">
     <div class=" p-3 row shadow">
       <h1 class="m-auto">Consulta Online</h1>

@@ -1,4 +1,9 @@
 <?php
+/**
+ *
+ * @package ndruththeme
+ */
+
 require_once 'ndruththeme_widgets.php';
 
 
@@ -103,8 +108,18 @@ function register_widgets(){
         'id' => 'footer-widget',
         'description' => 'Widgets in this area will be shown in the footer.',
         'before_widget' => '<div id="%1$s" class="col-lg-4 mr-auto">',
+        'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
+    ));
+    register_sidebar( array(
+        'name' => 'Footer media widget',
+        'id' => 'footer-media-widget',
+        'description' => 'Widgets in this area will be shown in the footer.',
+        'before_widget' => '<ul id="%1$s" class="social-buttons navbar-nav flex-row justify-content-center">',
+        'after_widget' => '</ul>',
+        'before_title' => '',
+        'after_title' => ''
     ));
     register_sidebar(array(
         'name'          => 'Services',

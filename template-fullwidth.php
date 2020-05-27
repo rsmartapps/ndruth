@@ -4,7 +4,7 @@
  *
  * Template Name: Full width
  *
- * @package storefront
+ * @package ndruththeme
  */
 
 get_header(); ?>

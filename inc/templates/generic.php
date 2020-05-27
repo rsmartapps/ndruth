@@ -1,5 +1,8 @@
 <?php
-
+/**
+ *
+ * @package ndruththeme
+ */
 
 function start_head_wrapper(){
     ?><nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white shadow "><?php

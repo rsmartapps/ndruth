@@ -1,3 +1,8 @@
+<?php /**
+ *
+ * @package ndruththeme
+ */
+?>
 <!-- Menu section -->
 
   <a class="navbar-brand" href="/">

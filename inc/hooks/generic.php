@@ -1,4 +1,8 @@
 <?php
+/**
+ *
+ * @package ndruththeme
+ */
 
 add_action('ndruth_before_site','start_head_wrapper',10);
 add_action('ndruth_before_site','site_logo',20);
