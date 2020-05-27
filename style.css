@@ -10497,3 +10497,6 @@ a.text-white:hover {
   width: auto !important;
   margin: 5px;
 }
+.widget_media_gallery{
+  list-style: none;
+}
