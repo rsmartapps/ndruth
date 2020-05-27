@@ -59,7 +59,7 @@ function scripts() {
     
 	wp_enqueue_style( 'slick', get_template_directory_uri() . '/css/slick/slick.css', array(), '1.5.7' );
 	wp_enqueue_style( 'slick-theme', get_template_directory_uri() . '/css/slick/slick-theme.css', array(), '1.5.7' );
-	wp_enqueue_script( 'slick', get_template_directory_uri() . '/js/slick/slick.js', array(), '1.5.7', true );
+	wp_enqueue_script( 'slick', get_template_directory_uri() . '/js/slick/slick.min.js', array(), '1.5.7', true );
 
 }
 add_action("wp_enqueue_scripts","scripts");
