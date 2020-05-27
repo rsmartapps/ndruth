@@ -17,7 +17,14 @@
             <p class="navbar-nav lead flex-row justify-content-center">
             <a class="nav-link p-0" href="mailto:<?php antispambot('contact@ndruthsebastian.com');?>">ND Ruth Sebastian Contact</a>
             </p>
-            <?php if ( is_active_sidebar( 'footer-media-widget' ) ) { dynamic_sidebar( 'footer-media-widget' );} ?>
+            <?php if ( is_active_sidebar( 'footer-media-widget' ) ) { 
+              dynamic_sidebar( 'footer-media-widget' ); 
+            ?>
+              <script>jQuery(function($) {
+                  $('.widget_media_gallery .gallery').slick();
+                  });
+              </script>
+            <?php }  ?>
           </div>
           <?php if ( is_active_sidebar( 'footer-widget' ) ) { dynamic_sidebar( 'footer-widget' ); } ?>
         </div>
