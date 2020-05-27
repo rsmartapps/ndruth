@@ -130,6 +130,11 @@ function register_widgets(){
         'before_title' => '<h5 class="card-header">',
         'after_title' => '</h5>'
     ));
+    register_sidebar(array(
+        'name'          => 'Certificates widget',
+        'id'            => 'footer-certs-widget',
+        'description'   => 'Add image certificates',
+    ));
 }
 add_action('after_setup_theme','register_widgets');
 

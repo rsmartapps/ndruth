@@ -3,6 +3,12 @@
   @package ndruththeme
 */
 ?>
+<section class="mt-3">
+    <!-- logos -->
+  <div class="d-flex flex-wrap align-items-center text-center justify-content-center">
+    <?php if(is_active_sidebar('footer-certs-widget')){ dynamic_sidebar('footer-certs-widget'); } ?>
+  </div>
+</section>
 <section class="bg-primary text-white pt-3 mt-3 mb-0">
       <div class="container-fluid">
 
