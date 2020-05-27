@@ -13,3 +13,13 @@ GitHub Theme URI: https://github.com/rsmartapps/ndruth
 */
 @import 'css/normalize.scss';
 @import 'css/bootstrap.scss';
+
+.logos .widget_media_gallery .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.logos .widget_media_gallery .gallery .gallery-item{
+    float: none;
+    width: auto;
+}

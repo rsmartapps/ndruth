@@ -10487,3 +10487,12 @@ h3 {
 a.text-white:hover {
   color: rgba(255, 129, 56, 0.75) !important;
 }
+.logos .widget_media_gallery .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.logos .widget_media_gallery .gallery .gallery-item{
+  float: none;
+  width: auto;
+}
