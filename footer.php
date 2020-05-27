@@ -21,7 +21,35 @@
               dynamic_sidebar( 'footer-media-widget' ); 
             ?>
               <script>jQuery(function($) {
-                  $('.widget_media_gallery .gallery').slick();
+                  $('.widget_media_gallery .gallery').slick({
+                      dots: false,
+                      infinite: true,
+                      slidesToShow: 3,
+                      speed: 300,
+                      centerMode: true,
+                      slidesToScroll: 1,
+                      slidesToShow: 3,
+                      responsive: [
+                        {
+                          breakpoint: 768,
+                          settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 2
+                          }
+                        },
+                        {
+                          breakpoint: 480,
+                          settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                          }
+                        }
+                      ]
+                    });
                   });
               </script>
             <?php }  ?>
