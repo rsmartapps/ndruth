@@ -10493,6 +10493,7 @@ a.text-white:hover {
   justify-content: center;
 }
 .logos .widget_media_gallery .gallery .gallery-item{
-  float: none;
-  width: auto;
+  float: none !important;
+  width: auto !important;
+  margin: 5px;
 }

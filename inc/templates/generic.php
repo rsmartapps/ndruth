@@ -25,7 +25,7 @@ function homepage_posts(){
         
         include 'views/html-content-homepage.php';
 
-    } // end of the loop.
+    }
 }
 function homepage_contact(){
     include_once 'views/html-contact-homepage.php';
