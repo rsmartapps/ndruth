@@ -12,14 +12,17 @@
       wp_nav_menu(
 				array(
           'theme_location'  => 'header',
-          'menu_id' => 'navbarSupportedContent',
-          'menu_class'      => 'collapse navbar-collapse',
-          'before'      => '<ul class="navbar-nav ml-auto">',
-          'after'      => '</ul>',
-          // 'walker'          => new WP_Bootstrap_Navwalker,
-          'fallback_cb'        => 'header_page_menu',
+          'container_id'    => 'navbarSupportedContent',
+          'container_class' => 'collapse navbar-collapse',
+          // 'menu_id'      => 'navbarSupportedContent',
+          // 'menu_class'   => 'collapse navbar-collapse',
+          'menu_class'      => 'navbar-nav ml-auto',
+        // 'before'         => '<ul class="navbar-nav ml-auto">',
+          // 'after'        => '</ul>',
+          // 'walker'       => new WP_Bootstrap_Navwalker,
           'link_class'      => 'nav-link',
-          'li_class'        => 'nav-item'
+          'li_class'        => 'nav-item',
+          'fallback_cb'     => 'header_page_menu'
 				)
       ); 
       
@@ -33,8 +36,8 @@
           'echo'         => true,
           'link_before'  => '',
           'link_after'   => '',
-          'before'       => '<ul class="navbar-nav ml-auto">',
-          'after'        => '</ul>',
+          'before'       => '',
+          'after'        => '',
           'item_spacing' => 'discard',
           'walker'       => '',
           'link_class'      => 'nav-link',
