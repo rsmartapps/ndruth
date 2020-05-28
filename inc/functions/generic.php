@@ -34,7 +34,7 @@ function ndruththeme_theme_setup() {
  */
 function scripts() {
     global $ndruththeme_version;
-    // $min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+    $min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
     /**
      * Styles
@@ -63,29 +63,6 @@ function scripts() {
 
 }
 add_action("wp_enqueue_scripts","scripts");
-
-/**
- * Register Google fonts.
- *
- * @since 2.4.0
- * @return string Google fonts URL for the theme.
- */
-function google_fonts() {
-    $google_fonts = apply_filters(
-        'storefront_google_font_families', array(
-            'source-sans-pro' => 'Source+Sans+Pro:400,300,300italic,400italic,600,700,900',
-        )
-    );
-
-    $query_args = array(
-        'family' => implode( '|', $google_fonts ),
-        'subset' => rawurlencode( 'latin,latin-ext' ),
-    );
-
-    $fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-
-    return $fonts_url;
-}
   
 function wpdocs_channel_nav_class( $classes, $item, $args ,$depth ) {
  
@@ -110,7 +87,7 @@ add_filter( 'nav_menu_link_attributes', 'wpse156165_menu_add_class', 50, 4 );
 /************* WIDGETS *****************/
 function register_widgets(){
     register_sidebar( array(
-        'name' => 'Footer widget',
+        'name' => 'Footer web',
         'id' => 'footer-widget',
         'description' => 'Widgets in this area will be shown in the footer.',
         'before_widget' => '<div id="%1$s" class="col-lg-4 mr-auto">',
@@ -119,7 +96,7 @@ function register_widgets(){
         'after_title' => '</h3>'
     ));
     register_sidebar( array(
-        'name' => 'Footer media widget',
+        'name' => 'Footer social media',
         'id' => 'footer-media-widget',
         'description' => 'Widgets in this area will be shown in the footer.',
         'before_widget' => '<ul id="%1$s" class="social-buttons navbar-nav flex-row justify-content-center">',
@@ -137,7 +114,7 @@ function register_widgets(){
         'after_title' => '</h5>'
     ));
     register_sidebar(array(
-        'name'          => 'Certificates widget',
+        'name'          => 'Certificates footer page',
         'id'            => 'footer-certs-widget',
         'description'   => 'Add image certificates',
     ));

@@ -3,12 +3,12 @@
  *
  * @package ndruththeme
  */
-define( 'WP_DEBUG', true );
-define( 'SCRIPT_DEBUG', true );
-define( 'WP_DEBUG_DISPLAY', true );
-define( 'CONCATENATE_SCRIPTS', false );
-define( 'COMPRESS_CSS', false );
-define( 'COMPRESS_SCRIPTS', false );
+define( 'WP_DEBUG', false );
+define( 'SCRIPT_DEBUG', false );
+define( 'WP_DEBUG_DISPLAY', false );
+define( 'CONCATENATE_SCRIPTS', true );
+define( 'COMPRESS_CSS', true );
+define( 'COMPRESS_SCRIPTS', true );
 
 $theme = wp_get_theme( 'Business ND' );
 global $ndruththeme_version;

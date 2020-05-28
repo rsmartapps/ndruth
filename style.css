@@ -1,10 +1,10 @@
 @charset "UTF-8";
 /*!
-Theme Name:   Business ND
-Theme URI:    https://woocommerce.com/storefront/
+Theme Name:   Nutrition & Dietetics Theme
+Theme URI:    https://ndruthsebastian.com/
 Author:       Automattic
 Author URI:   https://rsmartapps.com/
-Description:  
+Description:  Tema creado especialemnte para ND Ruth sebastian y no esta pensado para ser implemntado en otras webs
 Version:      1.0.1
 License:      GNU General Public License v2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
@@ -10487,16 +10487,19 @@ h3 {
 a.text-white:hover {
   color: rgba(255, 129, 56, 0.75) !important;
 }
+
 .logos .widget_media_gallery .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.logos .widget_media_gallery .gallery .gallery-item{
+
+.logos .widget_media_gallery .gallery .gallery-item {
   float: none !important;
   width: auto !important;
   margin: 5px;
 }
-.widget_media_gallery{
+
+.widget_media_gallery {
   list-style: none;
 }
