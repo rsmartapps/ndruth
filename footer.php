@@ -13,7 +13,7 @@
         <div class="navbar-dark row text-center">
           <div class="col-lg-4 ml-auto">
             <p class="navbar-nav lead flex-row justify-content-center">
-            <a class="nav-link p-0" href="mailto:<?php antispambot('contact@ndruthsebastian.com');?>">ND Ruth Sebastian Contact</a>
+            <a class="nav-link p-0" href="mailto:<?php esc_url(antispambot('contact@ndruthsebastian.com'));?>"><?php esc_url(antispambot('contact@ndruthsebastian.com'));?></a>
             </p>
             <?php if ( is_active_sidebar( 'footer-media-widget' ) ) { 
               dynamic_sidebar( 'footer-media-widget' ); 
