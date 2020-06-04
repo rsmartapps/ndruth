@@ -19,6 +19,22 @@ function add_header_xua() {
 }
 add_action( 'send_headers', 'add_header_xua' );
 
+function ee_headers_metadata(){ ?>
+    <link rel="shortcut icon" href="<?php echo esc_url(get_template_directory_uri().'/favicon.ico'); ?>">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-83711446-3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-83711446-3');
+    </script>
+
+    <?php
+}
+add_action( 'wp_head', 'ee_headers_metadata' );
+
 function ndruththeme_theme_setup() {
     add_theme_support( 'menus' );
     register_nav_menus( array( 
