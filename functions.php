@@ -10,7 +10,7 @@ define( 'CONCATENATE_SCRIPTS', true );
 define( 'COMPRESS_CSS', true );
 define( 'COMPRESS_SCRIPTS', true );
 
-$theme = wp_get_theme( 'Business ND' );
+$theme = wp_get_theme();
 global $ndruththeme_version;
 $ndruththeme_version = $theme['Version'];
 
